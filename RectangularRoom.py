@@ -50,13 +50,6 @@ class RectangularRoom(object):
         n: an integer
         returns: True if (m, n) is cleaned, False otherwise
         """
-        # if m in self.cleaned_Tiles.keys():
-        #     if self.cleaned_Tiles[m]==n:
-        #         return True
-        #     else:
-        #         return False
-        # else:
-        #     return False
         pos=(m,n)
         return self.tiles_Map[pos]
 
