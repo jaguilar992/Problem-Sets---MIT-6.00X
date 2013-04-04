@@ -27,6 +27,9 @@ class RectangularRoom(object):
         self.height=height
         self.tiles_Map={}
         self.cleaned_Tiles={}
+        
+        for i in range(self.width):
+            self.cleaned_Tiles[i]=[]
         for i in range(self.width):
             for j in range(self.height):
                 pos=(i,j)
@@ -42,7 +45,8 @@ class RectangularRoom(object):
         """
         x_Tile=int(math.floor((pos.getX())))
         y_Tile=int(math.floor((pos.getY())))
-        self.cleaned_Tiles[x_Tile]=y_Tile
+        if (x_Tile, y_Tile) not in self.cleaned_Tiles[x_Tile]:
+            self.cleaned_Tiles[x_Tile].append((x_Tile,y_Tile))
         pos2=(x_Tile,y_Tile)
         if pos2 in self.tiles_Map:
             self.tiles_Map[pos2]=True
@@ -82,7 +86,12 @@ class RectangularRoom(object):
 
         returns: an integer
         """
-        return len(self.cleaned_Tiles)
+        keys=self.cleaned_Tiles.keys()
+        total=0
+        for keys in self.cleaned_Tiles:
+            a=len(self.cleaned_Tiles[keys])
+            total+=a
+        return total
 
 
     def getRandomPosition(self):
