@@ -1,3 +1,11 @@
+from ps7 import *
+import ps7_visualize
+import random
+import string
+from ps7_verify_movement27 import testRobotMovement
+
+
+# === Problem 1
 class RectangularRoom(object):
     """
     A RectangularRoom represents a rectangular region containing clean or dirty
@@ -23,7 +31,6 @@ class RectangularRoom(object):
             for j in range(self.height):
                 pos=(i,j)
                 self.tiles_Map[pos]=False
-        print (0,0) in self.tiles_Map
     
     def cleanTileAtPosition(self, pos):
         """
@@ -50,6 +57,13 @@ class RectangularRoom(object):
         n: an integer
         returns: True if (m, n) is cleaned, False otherwise
         """
+        # if m in self.cleaned_Tiles.keys():
+        #     if self.cleaned_Tiles[m]==n:
+        #         return True
+        #     else:
+        #         return False
+        # else:
+        #     return False
         pos=(m,n)
         return self.tiles_Map[pos]
 
