@@ -1,11 +1,3 @@
-from ps7 import *
-import ps7_visualize
-import random
-import string
-from ps7_verify_movement27 import testRobotMovement
-
-
-# === Problem 1
 class RectangularRoom(object):
     """
     A RectangularRoom represents a rectangular region containing clean or dirty
@@ -26,10 +18,7 @@ class RectangularRoom(object):
         self.width=width
         self.height=height
         self.tiles_Map={}
-        self.cleaned_Tiles={}
-        
-        for i in range(self.width):
-            self.cleaned_Tiles[i]=[]
+
         for i in range(self.width):
             for j in range(self.height):
                 pos=(i,j)
@@ -45,11 +34,8 @@ class RectangularRoom(object):
         """
         x_Tile=int(math.floor((pos.getX())))
         y_Tile=int(math.floor((pos.getY())))
-        if (x_Tile, y_Tile) not in self.cleaned_Tiles[x_Tile]:
-            self.cleaned_Tiles[x_Tile].append((x_Tile,y_Tile))
-        pos2=(x_Tile,y_Tile)
-        if pos2 in self.tiles_Map:
-            self.tiles_Map[pos2]=True
+        # if (x_Tile,y_Tile) in self.tiles_Map:
+        self.tiles_Map[(x_Tile,y_Tile)]=True
 
     def isTileCleaned(self, m, n):
         """
@@ -61,15 +47,7 @@ class RectangularRoom(object):
         n: an integer
         returns: True if (m, n) is cleaned, False otherwise
         """
-        # if m in self.cleaned_Tiles.keys():
-        #     if self.cleaned_Tiles[m]==n:
-        #         return True
-        #     else:
-        #         return False
-        # else:
-        #     return False
-        pos=(m,n)
-        return self.tiles_Map[pos]
+        return self.tiles_Map[(m,n)]
 
     
     def getNumTiles(self):
@@ -86,12 +64,11 @@ class RectangularRoom(object):
 
         returns: an integer
         """
-        keys=self.cleaned_Tiles.keys()
-        total=0
-        for keys in self.cleaned_Tiles:
-            a=len(self.cleaned_Tiles[keys])
-            total+=a
-        return total
+        count=0
+        for i in self.tiles_Map.values():
+            if i==True:
+                count+=1
+        return count
 
 
     def getRandomPosition(self):
