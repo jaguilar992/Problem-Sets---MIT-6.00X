@@ -8,4 +8,4 @@ tar -xvf Moodle.tar.gz
 cd ..
 sudo chmod -R 777 www/
 cd www/html/
-ls
+vi config.php
